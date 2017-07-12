@@ -54,7 +54,7 @@
         <button 
             type="submit" 
             class="btn btn-primary btn-md btn-block" 
-            [disabled]="!f.valid" 
+            [disabled]="!f.valid || (pass.value !== null && pass.value.length <6)" 
         >Submit</button>
        </div>
       </form>
