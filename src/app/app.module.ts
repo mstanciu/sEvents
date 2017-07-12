@@ -8,6 +8,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AppRoutingModule } from './routing.module';
 import { AccountComponent } from './auth/account/account.component';
+import { EventsComponent } from './auth/account/events/events.component';
+import { FriendsComponent } from './auth/account/friends/friends.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import { AccountComponent } from './auth/account/account.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    EventsComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
