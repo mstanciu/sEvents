@@ -10,6 +10,7 @@ import { AppRoutingModule } from './routing.module';
 import { AccountComponent } from './auth/account/account.component';
 import { EventsComponent } from './auth/account/events/events.component';
 import { FriendsComponent } from './auth/account/friends/friends.component';
+import { SettingsComponent } from './auth/account/settings/settings.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FriendsComponent } from './auth/account/friends/friends.component';
     RegisterComponent,
     AccountComponent,
     EventsComponent,
-    FriendsComponent
+    FriendsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

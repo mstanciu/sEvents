@@ -1,0 +1,10 @@
+.events-container {
+    width:75%;
+     border: 1px solid red; 
+    float:left;
+}
+.pannel-container {
+    width:25%;
+    /* border: 1px solid red; */
+    float:left;
+}
