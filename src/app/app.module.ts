@@ -11,6 +11,9 @@ import { AccountComponent } from './auth/account/account.component';
 import { EventsComponent } from './auth/account/events/events.component';
 import { FriendsComponent } from './auth/account/friends/friends.component';
 import { SettingsComponent } from './auth/account/settings/settings.component';
+import { RegisterService } from "app/auth/register/register.service";
+import {HttpModule } from '@angular/http';
+import { ServiceLogin } from "app/auth/login/service.login";
 
 
 @NgModule({
@@ -27,9 +30,10 @@ import { SettingsComponent } from './auth/account/settings/settings.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [RegisterService,ServiceLogin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

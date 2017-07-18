@@ -14,7 +14,8 @@ const appRoutes: Routes = [
     {path: 'account', component: AccountComponent, children:[
       {path: 'events', component: EventsComponent },
       {path: 'friends', component: FriendsComponent},
-      {path: 'settings', component: SettingsComponent}
+      {path: 'settings', component: SettingsComponent},
+      {path: 'showUsers', component: FriendsComponent}
     ]}
 ];
 
