@@ -9,7 +9,9 @@ import { FriendsComponent } from "app/auth/account/friends/friends.component";
 import { SettingsComponent } from './auth/account/settings/settings.component';
 const appRoutes: Routes = [
     {path: '', component: AppComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'login', component: LoginComponent, children: [
+      {path: ':email', component: AccountComponent}
+    ]},
     {path: 'register', component: RegisterComponent},
     {path: 'account', component: AccountComponent, children:[
       {path: 'events', component: EventsComponent },

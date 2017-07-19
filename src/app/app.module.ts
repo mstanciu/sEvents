@@ -14,6 +14,7 @@ import { SettingsComponent } from './auth/account/settings/settings.component';
 import { RegisterService } from "app/auth/register/register.service";
 import {HttpModule } from '@angular/http';
 import { ServiceLogin } from "app/auth/login/service.login";
+import { ServiceAccount } from "app/auth/account/service.account";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { ServiceLogin } from "app/auth/login/service.login";
     FormsModule,
     HttpModule
   ],
-  providers: [RegisterService,ServiceLogin],
+  providers: [RegisterService,ServiceLogin,ServiceAccount],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

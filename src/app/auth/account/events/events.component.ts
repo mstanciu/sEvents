@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceAccount } from "app/auth/account/service.account";
 
 @Component({
   selector: 'app-events',
@@ -19,9 +20,12 @@ export class EventsComponent implements OnInit {
     {name:'Baseball', location:'Iasi', date: '25-dec-2017', attendence:50}
 
   ];
-  constructor() { }
+  constructor(private accountService: ServiceAccount) { }
 
   ngOnInit() {
   }
 
+  isLoggedIn() {
+    return this.accountService.isLoggedIn();
+  }
 }

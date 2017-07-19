@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         (response) => {
           console.log(response);
           this.signUp.reset();
-          this.router.navigate(['/account'])
+          // this.router.navigate(['/account'])
 
         },
         (err) => console.log(err)

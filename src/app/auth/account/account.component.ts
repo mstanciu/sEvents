@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
+import { Route, ActivatedRoute } from "@angular/router";
+import { ServiceAccount } from "app/auth/account/service.account";
 
 @Component({
   selector: 'app-account',
@@ -8,9 +10,13 @@ import { HttpModule, Http } from '@angular/http';
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private http: Http) { }
+  
+  constructor(private route:ActivatedRoute, private accountService: ServiceAccount) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.accountService.logoutUser();
+  }
 }
