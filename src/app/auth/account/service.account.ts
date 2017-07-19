@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http,Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -6,7 +6,7 @@ export class ServiceAccount {
 
     private loggedIn: boolean = false;
     
-    constructor() {}
+    constructor(private http: Http) {}
 
     isLoggedIn() {
         return this.loggedIn;
@@ -18,6 +18,17 @@ export class ServiceAccount {
 
     logoutUser() {
         this.loggedIn = false;
+    }
+
+    getEvents() {
+        this.http.get('http://localhost:8080/sEvents/account/events').subscribe(
+            (response) => {
+                    console.log(response.json);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
     }
 
 }
