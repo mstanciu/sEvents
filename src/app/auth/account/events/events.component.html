@@ -16,27 +16,45 @@
     >
     <div class="row">
         <div class="col-lg-12 col-xs-12 col-md-12">
-            <form class="form-group">
+            <form class="form-group" #f="ngForm">
                 <div class="form-group">
                     <h2>Sport</h2>
-                    <select class="form-control">
+                    <select 
+                    class="form-control" 
+                    name="selectedname"
+                    ngModel
+                   (change)="selectName($event.target.value)"
+                    >
                         <option selected> Select a sport </option>
                         <option *ngFor="let event of events">{{event.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <h2>Location</h2>
-                    <select class="form-control">
+                    <select 
+                    class="form-control"
+                    name="selectedlocation"
+                    ngModel
+                   (change)="selectLocation($event.target.value)"
+                    >
                         <option selected> Select a location </option>
                         <option *ngFor="let event of events">{{event.location}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <h2>Starting Date</h2>
-                    <select class="form-control">
+                    <select 
+                    class="form-control"
+                    name="selectedDate"
+                    ngModel
+                    (change)="selectDate($event.target.value)"
+                    >
                         <option selected> Select a date </option>
                         <option *ngFor="let event of events">{{event.date}}</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <button type="button" (click)="resetForm()">Reset Filter</button>
                 </div>
             </form>
         </div>
