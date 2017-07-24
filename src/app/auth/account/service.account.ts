@@ -31,6 +31,27 @@ export class ServiceAccount {
         return this.http.get('http://localhost:8080/sEvents/account/events');
     }
 
+    getSports() {
+        return this.http.get('http://localhost:8080/sEvents/account/sports');
+    }
+
+    getSpecificEvent(Event_sport:{event_id: number, sport_id: number}) {
+        return this.http.post('http://localhost:8080/sEvents/account/events/id',Event_sport);
+    }
+
+    parseSports(sports: any) {
+        
+        let listOfSports: {name: string, id: number }[] = [];
+        for(let s of sports) {
+            let sport: {name: string, id: number } = {
+                id: s.id_sport,
+                name: s.sport_name
+            }
+            listOfSports.push(sport);
+        }
+        return listOfSports;
+    }
+
     parseEvents(events: any) {
         let listOfEvents: { name: string, location: string, date: string, attendence: number }[] = [];
         for (let event of events) {
@@ -42,7 +63,7 @@ export class ServiceAccount {
             }
             listOfEvents.push(e);
         }
-
+        console.log(listOfEvents);
         return listOfEvents;
     }
 

@@ -12,6 +12,9 @@ export class EventsComponent implements OnInit {
   @ViewChild('f') selectForm: NgForm;
   events: { name: string, location: string, date: string, attendence: number }[] = [];
   eventsCopy: { name: string, location: string, date: string, attendence: number }[] = [];
+  sports: { name: string , id: number}[] = [];
+  sportsCopy: { name: string,  id: number}[] = [];
+
 
   constructor(private accountService: ServiceAccount) { }
 
@@ -25,9 +28,7 @@ export class EventsComponent implements OnInit {
           for (let e of listOfEvents) {
             this.events.push(e);
           }
-          console.log(this.events.slice());
           this.eventsCopy = this.events.slice();
-
         },
         (err) => {
 
@@ -35,6 +36,19 @@ export class EventsComponent implements OnInit {
           return null;
         }
       );
+      this.accountService.getSports().subscribe(
+        (response) => {
+          let listOfSports = this.accountService.parseSports(response.json());
+          console.log(listOfSports);
+          for(let sport of listOfSports) {
+            this.sports.push(sport);
+          }
+          this.sportsCopy = this.sports.slice();
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
     }
   }
 
@@ -43,15 +57,32 @@ export class EventsComponent implements OnInit {
   }
 
   selectName(name) {
-    let temp: { name: string, location: string, date: string, attendence: number }[] = [];
-    for (let e of this.events) {
-      if (e.name === name) {
-        temp.push(e);
+    console.log('am intrat');
+    let id;
+    for(let s of this.sportsCopy) {
+      if(s.name === name){
+        id = s.id;
+        break;
       }
     }
-
-    this.events = temp;
-    console.log(this.events);
+    this.accountService.getSpecificEvent({event_id:id, sport_id: id}).subscribe(
+      (response) => {
+        let tempVal:{ name: string, location: string, date: string, attendence: number }[] = [];
+        let res = response.json();
+        for( let r of res) {
+          let v:{name: string, location: string, date: string, attendence: number } = {
+            name:r[0],
+            location:r[1],
+            date:r[2],
+            attendence:r[3]
+          }
+          tempVal.push(v);
+        }
+        this.events = tempVal.slice();
+       
+      },
+      (err) => console.log(err)
+    );
   }
 
   selectLocation(location) {
