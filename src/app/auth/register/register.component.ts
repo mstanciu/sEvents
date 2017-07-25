@@ -3,8 +3,8 @@ import { NgForm } from "@angular/forms";
 import { FormGroup }  from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Http } from '@angular/http';
-import { RegisterService } from "app/auth/register/register.service";
 import { Router } from "@angular/router";
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   genders = ['Male','Female'];
   password = '';
 
-  constructor(private registerService: RegisterService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
     
@@ -36,12 +36,11 @@ export class RegisterComponent implements OnInit {
       age: 0
     };
 
-    this.registerService.registerUser(user).subscribe(
+    this.accountService.registerUser(user).subscribe(
         (response) => {
           console.log(response);
           this.signUp.reset();
-          // this.router.navigate(['/account'])
-
+          this.router.navigate['login'];
         },
         (err) => console.log(err)
     );

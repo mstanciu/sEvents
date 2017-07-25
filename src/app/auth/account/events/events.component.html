@@ -21,11 +21,11 @@
                     <h2>Sport</h2>
                     <select 
                     class="form-control" 
-                    name="selectedname"
+                    name="selectName"
                     ngModel
                    (change)="selectName($event.target.value)"
                     >
-                        <option selected> Select a sport </option>
+                        <option selected>Select a sport</option>
                         <option *ngFor="let sport of sportsCopy">{{sport.name}}</option>
                     </select>
                 </div>
@@ -33,11 +33,11 @@
                     <h2>Location</h2>
                     <select 
                     class="form-control"
-                    name="selectedlocation"
+                    name="selectLocation"
                     ngModel
                    (change)="selectLocation($event.target.value)"
                     >
-                        <option selected> Select a location </option>
+                        <option selected>Select a location</option>
                         <option *ngFor="let event of events">{{event.location}}</option>
                     </select>
                 </div>
@@ -45,11 +45,11 @@
                     <h2>Starting Date</h2>
                     <select 
                     class="form-control"
-                    name="selectedDate"
+                    name="selectDate"
                     ngModel
                     (change)="selectDate($event.target.value)"
                     >
-                        <option selected> Select a date </option>
+                        <option selected>Select a date</option>
                         <option *ngFor="let event of events">{{event.date}}</option>
                     </select>
                 </div>

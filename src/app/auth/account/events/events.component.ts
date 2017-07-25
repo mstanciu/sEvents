@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { ServiceAccount } from "app/auth/account/service.account";
 import { NgForm } from '@angular/forms';
+import { AccountService } from "app/auth/account.service";
 
 @Component({
   selector: 'app-events',
@@ -14,9 +14,11 @@ export class EventsComponent implements OnInit {
   eventsCopy: { name: string, location: string, date: string, attendence: number }[] = [];
   sports: { name: string , id: number}[] = [];
   sportsCopy: { name: string,  id: number}[] = [];
+  defaultName:string = 'Select a sport';
+  defaultLocation:string = 'Select a location';
+  defaultDate:string = 'Select a date';
 
-
-  constructor(private accountService: ServiceAccount) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
 
@@ -58,6 +60,10 @@ export class EventsComponent implements OnInit {
 
   selectName(name) {
     console.log('am intrat');
+    if(name === this.defaultName) {
+      this.events = this.eventsCopy.slice();
+      return;
+    }
     let id;
     for(let s of this.sportsCopy) {
       if(s.name === name){
@@ -87,17 +93,45 @@ export class EventsComponent implements OnInit {
 
   selectLocation(location) {
     console.log(location);
-    return location;
+    if(this.defaultLocation === location) {
+      this.events = this.eventsCopy.slice();
+      return;
+    }
+
+    let tempVal:{ name: string, location: string, date: string, attendence: number }[] = [];
+    for(let e of this.eventsCopy) {
+      if(e.location === location) {
+        tempVal.push(e);
+      }
+    }
+    this.events = tempVal;
+    console.log('i m out');
   }
 
   selectDate(date) {
     console.log(date);
-    return date;
+    if(this.defaultDate === date) {
+      this.events = this.eventsCopy.slice();
+      return;
+    }
+    let tempVal:{ name: string, location: string, date: string, attendence: number }[] = [];
+    for(let e of this.eventsCopy) {
+      if(e.date === date) {
+        tempVal.push(e);
+      }
+    }
+    this.events = tempVal;
+    console.log('i m out');
   }
 
   resetForm() {
     console.log(this.selectForm);
     this.events = this.eventsCopy.slice();
     this.selectForm.reset();
+    this.selectForm.setValue({
+      selectName: 'Select a sport',
+      selectLocation: 'Select a location',
+      selectDate: 'Select a date'
+    })
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 import { Route, ActivatedRoute } from "@angular/router";
-import { ServiceAccount } from "app/auth/account/service.account";
+import { AccountService } from "app/auth/account.service";
 
 @Component({
   selector: 'app-account',
@@ -11,7 +11,7 @@ import { ServiceAccount } from "app/auth/account/service.account";
 export class AccountComponent implements OnInit {
 
   
-  constructor(private route:ActivatedRoute, private accountService: ServiceAccount) { }
+  constructor(private route:ActivatedRoute, private accountService: AccountService) { }
 
   ngOnInit() {
   }

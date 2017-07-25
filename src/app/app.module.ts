@@ -11,10 +11,9 @@ import { AccountComponent } from './auth/account/account.component';
 import { EventsComponent } from './auth/account/events/events.component';
 import { FriendsComponent } from './auth/account/friends/friends.component';
 import { SettingsComponent } from './auth/account/settings/settings.component';
-import { RegisterService } from "app/auth/register/register.service";
 import {HttpModule } from '@angular/http';
-import { ServiceLogin } from "app/auth/login/service.login";
-import { ServiceAccount } from "app/auth/account/service.account";
+import { AccountService } from "app/auth/account.service";
+import { DropdownDirective } from './shared/dropdown.directive';
 
 
 @NgModule({
@@ -26,7 +25,8 @@ import { ServiceAccount } from "app/auth/account/service.account";
     AccountComponent,
     EventsComponent,
     FriendsComponent,
-    SettingsComponent
+    SettingsComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,7 @@ import { ServiceAccount } from "app/auth/account/service.account";
     FormsModule,
     HttpModule
   ],
-  providers: [RegisterService,ServiceLogin,ServiceAccount],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
