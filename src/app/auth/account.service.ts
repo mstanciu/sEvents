@@ -5,6 +5,22 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class AccountService {
 
+    loggedInUser: {
+        id_user:number,
+        firstName: string,
+        lastName: string,
+        age: string,
+        email: string,
+        gender: string
+    } = {
+        id_user:-1,
+        firstName:'',
+        lastName:'',
+        age:'',
+        gender:'',
+        email:''   
+    };
+
     events: { name: string, location: string, date: string, attendence: number }[] = [];
     selectedEvents: { name: string, location: string, date: string, attendence: number }[] = [];
 
@@ -96,7 +112,11 @@ export class AccountService {
     resetForm() {
     }
 
-    unfriend(user: { email: string, password: string, firstName: string, lastName: string, gender: string, age: number }) {
-        this.http.post('')
+    unfriend(User_friend: { id_user: number, id_friend: number }) {
+        return this.http.post('http://localhost:8080/sEvents/account/friends/unfriend',User_friend);
+    }
+
+    getUserId() {
+        
     }
 }

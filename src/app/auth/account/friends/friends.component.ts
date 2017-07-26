@@ -16,7 +16,7 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit() {
     if (this.accountService.isLoggedIn) {
-      let user: { id_user: number, id_friend: number } = { id_user: 1, id_friend: 1 };
+      let user: { id_user: number, id_friend: number } = { id_user:this.accountService.loggedInUser.id_user, id_friend: 1000 };
       let friends = this.accountService.getFriends(user).subscribe(
         (response) => {
           console.log(response.json());
@@ -50,7 +50,32 @@ export class FriendsComponent implements OnInit {
   }
 
   unfriend(friend) {
-
+    console.log(friend);
+    let f:{id_user:number, id_friend: number} = {
+      id_user:this.accountService.loggedInUser.id_user,
+      id_friend: friend.id_user
+    }
+    console.log(f);
+    this.accountService.unfriend(f).subscribe(
+      (res) => {
+        console.log(res);
+        this.updateFriendsList(f.id_friend);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  updateFriendsList(id:number) {
+    console.log('updated'+ id);
+    let temp: { id_user: number, age: number, gender: string, firstName: string, lastName: string }[] = [];
+    for(let f of this.friends) {
+      if(f.id_user !== id){
+        temp.push(f);
+      }
+    }
+    console.log(temp);
+    this.friends = temp.slice();
   }
 
 }
