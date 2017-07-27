@@ -24,19 +24,28 @@ export class AccountService {
     events: { name: string, location: string, date: string, attendence: number }[] = [];
     selectedEvents: { name: string, location: string, date: string, attendence: number }[] = [];
 
-    listChanged = new Subject<{ name: string, location: string, date: string, attendence: number }[]>();
+    
 
     private loggedIn: boolean = false;
 
     constructor(private http: Http) {
     }
 
+    
     registerUser(user: { email: string, password: string, firstName: string, lastName: string, gender: string, age: number }) {
         return this.http.post('http://localhost:8080/sEvents/register', user);
     }
 
     loginUser(user: { email: string, password: string, firstName: string, lastName: string, gender: string, age: number }) {
         return this.http.post('http://localhost:8080/sEvents/login/login', user);
+    }
+
+    searchFriend(user: { email: string, password: string, firstName: string, lastName: string, gender: string, age: number }) {
+        return this.http.post('http://localhost:8080/sEvents/friendSearch',user);
+    }
+    
+    addFriend(User_friend:{ id_user: number, id_friend: number }) {
+        return this.http.post('http://localhost:8080/sEvents/account/friends/addFriend',User_friend);
     }
 
     isLoggedIn() {
@@ -53,6 +62,18 @@ export class AccountService {
 
     getFriends(User_friend: { id_user: number, id_friend: number }) {
         return this.http.post('http://localhost:8080/sEvents/account/friends/listFriends', User_friend);
+    }
+
+    getPendingFriends(User_friend: {id_user: number, id_friend:number}) {
+        return this.http.post('http://localhost:8080/sEvents/account/friends/listFriends/pending',User_friend);
+    }
+
+    acceptRequest(User_friend: {id_user: number, id_friend:number}) {
+        return this.http.post('http://localhost:8080/sEvents/account/friends/listFriends/accepted',User_friend);
+    }
+
+    rejectRequest(User_friend: {id_user: number, id_friend:number}) {
+        return this.http.post('http://localhost:8080/sEvents/account/friends/listFriends/rejected',User_friend);
     }
 
     getEvents() {

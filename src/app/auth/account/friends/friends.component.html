@@ -1,16 +1,53 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-6">
-            <button class="btn btn-success "(click)='toggleOpen()'> Add friend</button>
-            <div class="container" *ngIf="isOpen">
-               <button>ceva nou</button>
+        <div class="container">
+            <div class="col-lg-2 col-md-2 col-xs-3" *ngFor="let o of pendingFriends">
+                <h2>{{o.email}}</h2>
+                <div class="well well-sm">{{o.firstName}}</div>
+                <div class="well well-sm">{{o.lastName}}</div>
+                <div class="well well-sm">{{o.gender}}</div>
+                <button class="btn btn-warning" type="button" (click)='acceptFriend(o)'> Accept</button>
+                <button class="btn btn-warning" type="button" (click)='rejectFriend(o)'> Decline</button>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-6">
+            <button class="btn btn-success " (click)='toggleOpen()'>Find a friend</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-6" *ngIf="isOpen">
+            <hr>
+            <form (ngSubmit)='searchFriend()' #f='ngForm'>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" name="email" ngModel #email="ngModel" placeholder="email@example.com" required email>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-md" [disabled]="!f.valid">
+                    Find
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row" *ngIf="found">
+        <div class="col-lg-4 col-md-4 col-xs-6 ">
+            <h2>{{sFriend.email}}</h2>
+            <div class="well well-sm">{{sFriend.firstName}}</div>
+            <div class="well well-sm">{{sFriend.lastName}}</div>
+            <div class="well well-sm">{{sFriend.gender}}</div>
+            <button class="btn btn-warning" (click)='unfriend(sFriend)' *ngIf='isFriend(sFriend)'>Unfriend</button>
+            <button class="btn btn-warning" (click)='addFriend(sFriend)' *ngIf='!isFriend(sFriend) && !pending'>Add</button>
+            <button class="btn btn-warning" *ngIf='pending' disabled>Pending</button>
+            <button class="btn btn-warning" (click)='cancelRequest(sFriend)' *ngIf='pending'>Cancel</button>
         </div>
     </div>
 </div>
 <div class="container events-container" *ngIf="isLoggedIn()">
     <div class="col-lg-4 col-md-4 col-xs-6" *ngFor="let friend of friends">
-        <h2>Friend</h2>
+        <h2>{{friend.firstName + friend.lastName}}</h2>
         <div class="well well-sm">{{friend.firstName}}</div>
         <div class="well well-sm">{{friend.lastName}}</div>
         <div class="well well-sm">{{friend.gender}}</div>
