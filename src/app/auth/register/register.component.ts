@@ -44,6 +44,10 @@ export class RegisterComponent implements OnInit {
         },
         (err) => console.log(err)
     );
-   
+  }
+
+  navigateToLogin() {
+    this.signUp.reset();
+    this.router.navigate(['login']);
   }
 }

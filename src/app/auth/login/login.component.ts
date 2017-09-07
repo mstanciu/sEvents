@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from "app/auth/account.service";
+import { ValidateEmailDirective } from '../../directives/validate-email.directive';
 
 
 @Component({
@@ -41,8 +42,18 @@ export class LoginComponent implements OnInit {
         this.accountService.setUserLoggedIn();
         this.route.navigate(['account']);
       },
-      (err) => console.log(err)
+      (err) => {
+        if(err.status === 500) {
+          console.log(err.status);
+          return false;
+        }
+      }
     );
+  }
+
+  navigateToRegister() {
+    this.login.reset();
+    this.route.navigate(['register']);
   }
 
 

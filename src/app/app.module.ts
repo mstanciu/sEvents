@@ -14,7 +14,9 @@ import { SettingsComponent } from './auth/account/settings/settings.component';
 import {HttpModule } from '@angular/http';
 import { AccountService } from "app/auth/account.service";
 import { DropdownDirective } from './shared/dropdown.directive';
-
+import { OnlyNumbersDirective } from './shared/only-numbers.directive';
+import { PassLengthDirective } from './shared/pass-length.directive';
+import { ValidateEmailDirective } from './directives/validate-email.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
     EventsComponent,
     FriendsComponent,
     SettingsComponent,
-    DropdownDirective
+    DropdownDirective,
+    OnlyNumbersDirective,
+    PassLengthDirective,
+    ValidateEmailDirective
   ],
   imports: [
     BrowserModule,
