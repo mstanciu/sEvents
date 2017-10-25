@@ -11,7 +11,7 @@
         <div class="form-group">
           <label for="email">Email address:</label>
           <input type="email" class="form-control" id="email" name="email" ngModel #email="ngModel" placeholder="email@example.com"
-            required validateEmail>
+            required>
         </div>
         <div *ngIf="email.errors">
           <span class="help-block" *ngIf="email.errors.validateEmail"> Please provide a gmail account </span>

@@ -15,10 +15,11 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
-    if(this.accountService.isLoggedIn()) {
-      this.route.navigate(['account']);
-    } else {
+    if (this.accountService.isLoggedIn()) {
       this.route.navigate(['login']);
+    } else {
+      this.route.navigate(['register']);
     }
+    
   }
 }
